@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    /* Aplica la fuente Arial o una fuente sans-serif como alternativa al cuerpo del documento */
+  }
+  
+  h1 {
+    text-align: center;
+    /* Centra el texto del encabezado <h1> */
+    margin-top: 50px;
+    /* Añade un margen superior de 50 píxeles al encabezado <h1> */
+  }
+  
+  #guess-input {
+    display: block;
+    /* Muestra el elemento como un bloque (ocupa todo el ancho disponible) */
+    margin: 0 auto 20px;
+    /* Centra el elemento horizontalmente y añade un margen inferior de 20 píxeles */
+    padding: 10px;
+    /* Añade un relleno interno de 10 píxeles */
+    font-size: 18px;
+    /* Establece el tamaño de la fuente a 18 píxeles */
+    width: 250px;
+    /* Define el ancho del elemento a 250 píxeles */
+    border: 1px solid #ccc;
+    /* Añade un borde gris claro de 1 píxel */
+  }
+  
+  #guess-button {
+    display: block;
+    /* Muestra el botón como un bloque (ocupa todo el ancho disponible) */
+    margin: 0 auto;
+    /* Centra el botón horizontalmente */
+    padding: 10px 20px;
+    /* Añade un relleno interno de 10 píxeles vertical y 20 píxeles horizontal */
+    font-size: 18px;
+    /* Establece el tamaño de la fuente a 18 píxeles */
+    background-color: #0CBABA;
+    /* Define el color de fondo del botón */
+    color: #fff;
+    /* Establece el color del texto a blanco */
+    border: none;
+    /* Elimina cualquier borde del botón */
+    border-radius: 3px;
+    /* Añade esquinas redondeadas de 3 píxeles al botón */
+  }
+  
+  button:active {
+    transform: scale(0.95);
+    /* Reduce el tamaño del botón al 95% cuando está activo (presionado) */
+  }
+  
+  .letter {
+    border: 1px solid black;
+    /* Añade un borde negro de 1 píxel alrededor de cada letra */
+    padding: 3px;
+    /* Añade un relleno interno de 3 píxeles */
+    margin: 3px;
+    /* Añade un margen de 3 píxeles alrededor de cada letra */
+    min-width: 20px;
+    /* Establece un ancho mínimo de 20 píxeles para cada letra */
+    text-align: center;
+    /* Centra el texto dentro de cada letra */
+    display: inline-block;
+    /* Muestra cada letra en línea (horizontalmente) pero como un bloque */
+  }
+  
+  .row {
+    margin-bottom: 10px;
+    /* Añade un margen inferior de 10 píxeles a cada fila */
+  }
+  
+  .input-area {
+    margin: 30px;
+    /* Añade un margen de 30 píxeles alrededor de la zona de entrada */
+  }
+  
