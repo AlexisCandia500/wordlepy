@@ -64,8 +64,10 @@ function intentar(){
     // Añade la fila al contenedor de la cuadrícula.
 
     const guessesContainer = document.getElementById("guesses");
-    guessesContainer.innerHTML += `${INTENTO}<br>`;
-    // Agrega el intento actual al contenedor de intentos, con un salto de línea.
+    const p = document.createElement('p');
+    p.textContent = INTENTO;
+    guessesContainer.appendChild(p);
+    // Crea un nuevo párrafo para cada intento y lo agrega al contenedor de intentos.
 
     intentos--;
     // Reduce el número de intentos restantes.
@@ -75,6 +77,7 @@ function intentar(){
         // Si no hay más intentos, muestra un mensaje de derrota y termina el juego.
     }
 }
+
 
 
 function leerIntento(){
