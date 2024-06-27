@@ -1,7 +1,7 @@
 let intentos = 6;
 // Define la cantidad de intentos que el jugador tiene.
 
-let diccionario = ['APPLE', 'HURLS', 'WINGS', 'YOUTH'];
+let diccionario = ['ADIOS', 'PADRE', 'MADRE', 'HIJOS'];
 // Lista de palabras posibles para el juego.
 
 let palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
