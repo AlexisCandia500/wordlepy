@@ -3,7 +3,7 @@ function init(){
 
 let intentos = 6;
 // let ganado = 0;
-let diccionario = ['PADRES', 'HIJOS', 'MADRES', 'ADIOS']
+let diccionario = ['MADRE', 'HIJOS', 'PADRE', 'ADIOS']
 // Obtenemos una palabr aleatoria de diccionario
 const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
 console.log(palabra);
