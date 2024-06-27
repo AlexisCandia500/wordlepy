@@ -1,111 +1,106 @@
-body {
+ body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: block;
     height: 100vh;
-    margin: 0;
+ }
+ .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 10px;
+  margin: 0 20rem;
 }
-
-.grid-container {
-    margin-top: 20px;
+.header i {
+  font-size: 32px;
 }
-
-.row {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
+.header i {
+  color: #0CBABA;
+  font-size: 34px;
 }
+.header span{
+  font-size: 32px;
+  margin: 5px;
+}
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+ h3 {
+   text-align: center;
+   margin-top: 20px;
+ }
 
-.letter {
-    border: 1px solid black;
-    padding: 3px;
-    margin: 3px;
-    min-width: 20px;
-    text-align: center;
+ #guess-input {
+   display: block;
+   margin: 0 auto 1px;
+   padding: 10px;
+   font-size: 18px;
+   width: 250px;
+   border-radius: 5px;
+   border: 1px solid #ccc;
+   outline: none;
+   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+ }
+ #guess-input:hover{
+  border: 1px solid #0CBABA;
+ }
+    
+ #guess-button {
+   display: block;
+   margin: 0 auto;
+   margin-top: 20px;
+   padding: 10px 20px;
+   font-size: 18px;
+   background-color: #0CBABA;
+   color: #fff;
+   border: none;
+   border-radius: 3px;
+   cursor: pointer;
+   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+ } 
+ #error{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items:center;
+  color: rgb(247, 70, 70);
+  font-size: 14px;
+  font-weight: bold;
+ }
+ button:active {
+ 	transform: scale(0.95);
+ }
+ .grid-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+ }
+ #grid{
+  display: grid;
+  align-items: center;
+  justify-items: center;
+ }
+ .row-letter {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
     display: inline-block;
-}
-
-.guesses-container {
     text-align: center;
-    margin-top: 20px;
-}
-
-.input-area {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-  
-  h1 {
-    text-align: center;
-    /* Centra el texto del encabezado <h1> */
-    margin-top: 50px;
-    /* Añade un margen superior de 50 píxeles al encabezado <h1> */
-  }
-  
-  #guess-input {
-    display: block;
-    /* Muestra el elemento como un bloque (ocupa todo el ancho disponible) */
-    margin: 0 auto 20px;
-    /* Centra el elemento horizontalmente y añade un margen inferior de 20 píxeles */
-    padding: 10px;
-    /* Añade un relleno interno de 10 píxeles */
-    font-size: 18px;
-    /* Establece el tamaño de la fuente a 18 píxeles */
-    width: 250px;
-    /* Define el ancho del elemento a 250 píxeles */
-    border: 1px solid #ccc;
-    /* Añade un borde gris claro de 1 píxel */
-  }
-  
-  #guess-button {
-    display: block;
-    /* Muestra el botón como un bloque (ocupa todo el ancho disponible) */
-    margin: 0 auto;
-    /* Centra el botón horizontalmente */
-    padding: 10px 20px;
-    /* Añade un relleno interno de 10 píxeles vertical y 20 píxeles horizontal */
-    font-size: 18px;
-    /* Establece el tamaño de la fuente a 18 píxeles */
-    background-color: #0CBABA;
-    /* Define el color de fondo del botón */
+    line-height: 48px;
+    border: 2px solid #dee1e9;
     color: #fff;
-    /* Establece el color del texto a blanco */
-    border: none;
-    /* Elimina cualquier borde del botón */
-    border-radius: 3px;
-    /* Añade esquinas redondeadas de 3 píxeles al botón */
-  }
-  
-  button:active {
-    transform: scale(0.95);
-    /* Reduce el tamaño del botón al 95% cuando está activo (presionado) */
-  }
-  
-  .letter {
-    border: 1px solid black;
-    /* Añade un borde negro de 1 píxel alrededor de cada letra */
-    padding: 3px;
-    /* Añade un relleno interno de 3 píxeles */
-    margin: 3px;
-    /* Añade un margen de 3 píxeles alrededor de cada letra */
-    min-width: 20px;
-    /* Establece un ancho mínimo de 20 píxeles para cada letra */
-    text-align: center;
-    /* Centra el texto dentro de cada letra */
-    display: inline-block;
-    /* Muestra cada letra en línea (horizontalmente) pero como un bloque */
-  }
-  
-  .row {
-    margin-bottom: 10px;
-    /* Añade un margen inferior de 10 píxeles a cada fila */
-  }
-  
-  .input-area {
-    margin: 30px;
-    /* Añade un margen de 30 píxeles alrededor de la zona de entrada */
-  }
-  
+    margin: 2px;
+    font-weight: 700;
+    border-radius: 5px;
+ 
+ }
+    
+ .row{
+     margin-bottom: 5px;
+ }
+    
+ .input-area{
+     margin: 30px;
+ }
