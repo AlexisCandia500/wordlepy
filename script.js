@@ -1,105 +1,146 @@
-let intentos = 6;
-// Define la cantidad de intentos que el jugador tiene.
-
-let diccionario = ['ADIOS', 'PADRE', 'MADRE', 'HIJOS'];
-// Lista de palabras posibles para el juego.
-
-let palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
-// Selecciona una palabra aleatoria del diccionario para que sea la palabra que el jugador debe adivinar.
-
 window.addEventListener('load', init);
-// Cuando la página web se carga, se ejecuta la función 'init'.
-
 function init(){
-    console.log('Esto se ejecuta solo cuando se carga la pagina web');
-    // Muestra un mensaje en la consola cuando la página se carga.
-}
 
+let intentos = 6;
+// let ganado = 0;
+let diccionario = ['PADRES', 'HIJOS', 'MADRES', 'ADIOS']
+// Obtenemos una palabr aleatoria de diccionario
+const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
+console.log(palabra);
+// Usamos local storage para guardar el puntaje
+// localStorage.setItem('puntos', ganado);
+// let puntos = localStorage.getItem('puntos');
+// let puntosInt = parseInt(puntos);
+// console.log(puntosInt); 
+
+
+
+
+
+// Definimos las constantes
 const button = document.getElementById("guess-button");
-// Obtiene el botón de intentar por su id.
+const input = document.getElementById("guess-input");
+const ERROR = document.getElementById("error");
+const VIDA = document.getElementById("vida");
+VIDA.innerHTML = intentos;
 
-button.addEventListener("click", intentar);
-// Agrega un evento al botón para que cuando se haga clic, se ejecute la función 'intentar'.
-
-function intentar(){
-    const INTENTO = leerIntento();
-    // Lee el intento del jugador.
-
-    if (INTENTO === palabra) {
-        terminar("<h1>GANASTE!😀</h1>");
-        // Si el intento es igual a la palabra, muestra un mensaje de victoria y termina el juego.
-        return;
+button.addEventListener('click', validarInput);
+input.addEventListener('keyup', () => {
+        ERROR.innerHTML = "";
+        input.style.borderColor = '#ccc';
+    if (event.key === 'Enter') {
+        validarInput();
     }
+});
+function validarInput() {
+    const palabra = leerIntento();
+    const LETRAS = /^[a-zA-Z]+$/;
+    if (palabra.length > 5) {
+        ERROR.innerHTML = "*Ingrese 5 caracteres";
+        input.style.borderColor = 'red';
+    } else if(!LETRAS.test(palabra)){
+        ERROR.innerHTML = "*Solo se admite letras";
+        input.style.borderColor = 'red';
+    } else if (palabra.length < 5) {
+        ERROR.innerHTML = "*No agregaste todos las letras";
+        input.style.borderColor = 'red';
+    }
+    else {
+        ERROR.innerHTML = "";
+        input.style.borderColor = '#ccc';
+        intentar();
+    }
+}
+    // Definimos la fucion intentar que va ser invocado desde el boton
+    function intentar(){    
+        const INTENTO = leerIntento();
+        // Creamos un nuevo div con la clase row para injectar al grid
+        const GRID = document.getElementById("grid");
+        const ROW = document.createElement('div');
+        ROW.className = 'row';
+            if (INTENTO === palabra ) {
+                for (let i in palabra) {
+                    const SPAN = document.createElement('div');
+                    SPAN.className = 'row-letter';
 
-    const GRID = document.getElementById("grid");
-    // Obtiene el contenedor de la cuadrícula por su id.
+                    if (INTENTO[i] === palabra[i]){
 
-    const ROW = document.createElement('div');
-    ROW.className = 'row';
-    // Crea un nuevo div para representar una fila de letras.
+                        // Si coinciden cambiamos el color de span
+                        SPAN.innerHTML = INTENTO[i];
+                        SPAN.style.backgroundColor = '#79b851';
+                        SPAN.style.border = '#79b851';
+                    }
+                    ROW.appendChild(SPAN);
+                }
+                // puntosInt ++;
+                // localStorage.setItem('puntos', ganado);
+                //     intentos--;
 
-    for (let i in palabra){
-        const SPAN = document.createElement('span');
-        SPAN.className = 'letter';
-        // Crea un nuevo span para cada letra en la palabra.
+                GRID.appendChild(ROW);
+                terminar("<h1>GANASTE!😀</h1>")
+                return
+            } else {
+                for (let i in palabra){
+                    // creamos el spam con la clase letter para mostrar los colores
+                    const SPAN = document.createElement('div');
+                    SPAN.className = 'row-letter';
+        
+                    // Preguntamos si coinciden las mismas posiciones de las letras
+                    if (INTENTO[i] === palabra[i]){
+        
+                        // Si coinciden cambiamos el color de span
+                        SPAN.innerHTML = INTENTO[i];
+                        SPAN.style.backgroundColor = '#79b851';
+                        SPAN.style.border = '#79b851';
+        
+                        // Preguntamos si es que incluye la letra en cualquiera de las posiciones
+                    } else if( palabra.includes(INTENTO[i]) ) {
+                        // span yellow
+                        SPAN.innerHTML = INTENTO[i];
+                        SPAN.style.backgroundColor = '#f3c237';
+                        SPAN.style.border = '#f3c237';
+        
+                    } else {
+                        // span gris
+                        SPAN.innerHTML = INTENTO[i];
+                        SPAN.style.backgroundColor = '#a4aec4';
+                        SPAN.style.border = '#a4aec4';
+                        
+                    }
+                    // Injectamos dentro del div row
+                    ROW.appendChild(SPAN);
+                }
+                 // por ultimo el div row ingresamos dentro del div
+                GRID.appendChild(ROW);
+                // borramos lo que hay dentro del imput
+                input.value = "";
+                // Por cada for ejecutado se esta un intento
+                intentos --;
+                VIDA.innerHTML = intentos;
+                if (intentos==0){
+                    terminar("<h3>PERDISTE!😖 La palabra era "+ palabra + "</h3>")
+                }
+            }
 
-        if (INTENTO[i] === palabra[i]) {
-            SPAN.innerHTML = INTENTO[i];
-            SPAN.style.backgroundColor = '#79b851'; // Verde
-            // Si la letra está en la posición correcta, la colorea de verde.
-        } else if (palabra.includes(INTENTO[i])) {
-            SPAN.innerHTML = INTENTO[i];
-            SPAN.style.backgroundColor = '#f3c237'; // Amarillo
-            // Si la letra está en la palabra pero en la posición incorrecta, la colorea de amarillo.
-        } else {
-            SPAN.innerHTML = INTENTO[i];
-            SPAN.style.backgroundColor = '#a4aec4'; // Gris
-            // Si la letra no está en la palabra, la colorea de gris.
+        // Creamos la función terminar en caso de que si ganamos o perdemos
+        function terminar(mensaje){
+            input.disabled = true;
+            let contenedor = document.getElementById('guesses');
+            contenedor.innerHTML = mensaje;
+            button.innerText = "Reiniciar";
+            button.addEventListener("click", ()=>{
+                GRID.innerHTML = "";
+                location.reload();
+            });
         }
-        ROW.appendChild(SPAN);
-        // Añade el span a la fila.
+        
     }
 
-    GRID.appendChild(ROW);
-    // Añade la fila al contenedor de la cuadrícula.
-
-    const guessesContainer = document.getElementById("guesses");
-    const p = document.createElement('p');
-    p.textContent = INTENTO;
-    guessesContainer.appendChild(p);
-    // Crea un nuevo párrafo para cada intento y lo agrega al contenedor de intentos.
-
-    intentos--;
-    // Reduce el número de intentos restantes.
-
-    if (intentos === 0){
-        terminar("<h1>PERDISTE!😖</h1>");
-        // Si no hay más intentos, muestra un mensaje de derrota y termina el juego.
+    function leerIntento(){
+        let intento = document.getElementById("guess-input");
+        intento = intento.value;
+        intento = intento.toUpperCase(); 
+        return intento;
     }
 
-    document.getElementById("guess-input").value = "";
-    // Limpia el campo de entrada después de cada intento.
-}
-
-
-function leerIntento(){
-    let intento = document.getElementById("guess-input");
-    intento = intento.value;
-    intento = intento.toUpperCase(); 
-    // Lee el valor del campo de entrada, lo convierte a mayúsculas y lo devuelve.
-    return intento;
-}
-
-function terminar(mensaje){
-    const INPUT = document.getElementById("guess-input");
-    INPUT.disabled = true;
-    // Desactiva el campo de entrada.
-
-    const BOTON = document.getElementById("guess-button");
-    BOTON.disabled = true;
-    // Desactiva el botón de intentar.
-
-    let contenedor = document.getElementById('guesses');
-    contenedor.innerHTML = mensaje;
-    // Muestra el mensaje de finalización (ganaste o perdiste) en el contenedor de mensajes.
 }
