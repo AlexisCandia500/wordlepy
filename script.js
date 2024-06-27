@@ -76,8 +76,10 @@ function intentar(){
         terminar("<h1>PERDISTE!😖</h1>");
         // Si no hay más intentos, muestra un mensaje de derrota y termina el juego.
     }
-}
 
+    document.getElementById("guess-input").value = "";
+    // Limpia el campo de entrada después de cada intento.
+}
 
 
 function leerIntento(){
